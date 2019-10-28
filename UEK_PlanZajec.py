@@ -3,7 +3,7 @@ from urllib.request import urlopen as uReq
 import pandas as pd
 
 # --------------------------------------------------------------------------------------
-# tutaj wklej adres do interesującego Cię planu zajęć w odpowiednim przedziale czasowym
+# tutaj wklej adres do interesujacego Cie planu zajec w odpowiednim przedziale czasowym
 PlanZajec_URL = 'http://planzajec.uek.krakow.pl/index.php?typ=G&id=82621&okres=3'
 # --------------------------------------------------------------------------------------
 
@@ -22,7 +22,7 @@ for row in range(1, len(Containers)):
     if Containers[row].td.attrs['class'][0] != 'uwagi':
         StartDate = Containers[row].find_all('td',{'class':'termin'})[0].get_text()
         EndDate = StartDate
-        
+
         Przedmiot = Containers[row].find_all('td',{'class':''})
         Subject = Przedmiot[0].get_text()
         Description = Przedmiot[1].get_text() + ' | ' + Przedmiot[2].get_text()
@@ -30,8 +30,8 @@ for row in range(1, len(Containers)):
 
         Time = Containers[row].find_all('td',{'class':'dzien'})[0].get_text().split(' ')
         StartTime = Time[1]
-        EndTime = Time[3]   
-        
+        EndTime = Time[3]
+
         Table.append([Subject,StartDate,StartTime,EndDate,EndTime,Description,Location])
 
 cols = ['Subject','Start Date','Start Time','End Date','End Time','Description','Location']
